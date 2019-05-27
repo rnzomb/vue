@@ -1,14 +1,12 @@
 <template>
-    <div>
+  <div>
     name: {{fullname}}
     <br>
     <input ref="inputName" type="text">
-    <button @click="changeName($refs.inputName.value)">   
-      test
-    </button>
+    <button @click="changeName($refs.inputName.value)">test</button>
     <br>
-    <input :class="nameClass" v-model.trim="name" type="text">         
-    <input :class="surnameClass" v-model="surname" type="text"> 
+    <input :class="nameClass" v-model.trim="name" type="text">
+    <input :class="surnameClass" v-model="surname" type="text">
   </div>
 </template>
 
@@ -30,59 +28,59 @@ export default {
     return {
       name: "Vasja",
       surname: "Vassiljev"
-    }
+    };
   },
 
-  computed: {                                                       // properties
+  computed: {
+    // properties
     fullname() {
-        return `${this.name} ${this.surname}`
+      return `${this.name} ${this.surname}`;
     },
 
-    nameClass(){
-        return this.getInputClass(this.name)
-        
+    nameClass() {
+      return this.getInputClass(this.name);
     },
 
-    surnameClass(){
-        return this.getInputClass(this.surname)
+    surnameClass() {
+      return this.getInputClass(this.surname);
     }
   },
 
   methods: {
-    changeName(name){
-      this.name = name
+    changeName(name) {
+      this.name = name;
     },
 
-    getInputClass(el){
-        if (el.length >5){
-            return 'first'
-        } else {
-            return "second"
-        }
+    getInputClass(el) {
+      if (el.length > 5) {
+        return "first";
+      } else {
+        return "second";
+      }
     }
   },
 
-  mounted(){
-    this.name = this.initialName
-    this.surname = this.initialSurname
+  mounted() {
+    this.name = this.initialName;
+    this.surname = this.initialSurname;
   },
 
-  watch:{
-    name(newVal, oldVal){
-      console.log(newVal + '<-' + oldVal)
-      this.$emit('test', this.fullname)                // mozhno this, togda vydast vsjo
+  watch: {
+    name(newVal, oldVal) {
+      console.log(newVal + "<-" + oldVal);
+      this.$emit("test", this.fullname); // mozhno this, togda vydast vsjo
     }
   }
-}
+};
 </script>
 
 <style scoped>
 .first {
-    background: grey;
+  background: grey;
 }
 
 .second {
-    background: yellow;
+  background: yellow;
 }
 </style>
 >
